@@ -1,12 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import TaskList from "./components/TaskList";
+import TaskList from "./components/Tasks/TaskList";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hola, Coder!</Text>
       <TaskList></TaskList>
       <StatusBar style="auto" />
     </View>
@@ -19,5 +18,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    height: "100%",
   },
 });

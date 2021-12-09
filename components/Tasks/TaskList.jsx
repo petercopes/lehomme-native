@@ -7,7 +7,9 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  StyleSheet,
 } from "react-native";
+import TaskItem from "../TaskItem";
 
 const TaskList = () => {
   const [itemList, setItemList] = useState([]);
@@ -25,8 +27,10 @@ const TaskList = () => {
   };
   return (
     <View>
-      <View>
+      <View style={styles.container}>
         <TextInput
+          s
+          style={styles.textInput}
           placeholder="Add Task"
           onChangeText={(text) => setTextInput(text)}
           value={textInput}
@@ -43,22 +47,44 @@ const TaskList = () => {
             }
           }}
         />
-        {itemList.length > 0 ? (
-          <FlatList
-            data={itemList}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={(data) => (
-              <View>
-                <Text>{data.item.text}</Text>
-                <Button title="X" onPress={() => deleteHandler(data.item.id)} />
-              </View>
-            )}
-          />
-        ) : (
-          <Text>No Tasks</Text>
-        )}
       </View>
+      {itemList.length > 0 ? (
+        <FlatList
+          data={itemList}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={(data) => (
+            <TaskItem pressHandler={deleteHandler} item={data.item} />
+          )}
+        />
+      ) : (
+        <Text style={styles.texAlert}>No Tasks</Text>
+      )}
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: "rgba(0,0,0,0.08)",
+    position: "relative",
+    top: 0,
+    justifyContent: "space-between",
+    borderRadius: 2,
+  },
+  textInput: {
+    padding: 10,
+    marginBottom: 10,
+    fontWeight: 600,
+    textAlign: "center",
+  },
+  button: {
+    width: "fit-content",
+  },
+  texAlert: {
+    fontSize: 20,
+    fontWeight: "200",
+    textAlign: "center",
+  },
+});
 export default TaskList;
