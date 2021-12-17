@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   textArea: {
     margin: 5,
-    fontWeight: 600,
+    fontWeight: "bold",
   },
   button: {
     width: "fit-content",
